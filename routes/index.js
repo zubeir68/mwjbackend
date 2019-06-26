@@ -76,7 +76,8 @@ router.post('/users', asyncHandler((req, res, next) => {
                 const findUser = await User.find({ email });
 
                 if (findUser.length > 0) {
-                    res.status(400).send('{"error": "E-mail exists already"}');
+                    // pass
+                    res.status(201).send('"message": "Email exists"');
                     next();
                 } else {
                     bcrypt.genSalt(10, (e, salt) => {
