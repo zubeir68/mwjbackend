@@ -14,7 +14,7 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 app.use(cors());
 
 // DB
-mongoose.connect('mongodb://127.0.0.1:27017/myweightjourney', { useNewUrlParser: true })
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/myweightjourney', { useNewUrlParser: true })
     .then(() => console.log('MongoDB connected...'))
     .catch(err => console.log(err));
 
