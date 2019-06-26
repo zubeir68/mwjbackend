@@ -2,7 +2,7 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 const JSONAPIDeserializer = require('jsonapi-serializer').Deserializer;
 const JSONAPISerializer = require('jsonapi-serializer').Serializer;
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt-nodejs');
 
 
 const router = express.Router();
