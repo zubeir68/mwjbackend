@@ -14,7 +14,7 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 app.use(cors());
 
 // DB
-mongoose.connect('mongodb://ds243607.mlab.com:43607/heroku_3n6xpqgl' || 'mongodb://127.0.0.1:27017/myweightjourney', { useNewUrlParser: true })
+mongoose.connect('mongodb://heroku_3n6xpqgl:p1r4ivloddvbalov3eul6qf0q@ds243607.mlab.com:43607/heroku_3n6xpqgl' || 'mongodb://127.0.0.1:27017/myweightjourney', { useNewUrlParser: true })
     .then(() => console.log('MongoDB connected...'))
     .catch(err => console.log(err));
 
