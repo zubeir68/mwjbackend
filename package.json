@@ -2,8 +2,8 @@
   "name": "myweightjourney",
   "version": "1.0.0",
   "description": "",
-  "engines": { 
-    "node": "8.9.4" 
+  "engines": {
+    "node": "8.9.4"
   },
   "main": "index.js",
   "scripts": {
@@ -14,7 +14,7 @@
   "author": "Zubeir Mohamed",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^3.0.6",
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "eslint": "^5.16.0",

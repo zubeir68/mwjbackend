@@ -83,7 +83,7 @@ router.post('/users', asyncHandler((req, res, next) => {
                         if (e) {
                             console.log(e);
                         }
-                        bcrypt.hash(password, salt, async (error, hash) => {
+                        bcrypt.hash(password, salt, null, async (error, hash) => {
                             if (error) {
                                 next(error);
                             }
