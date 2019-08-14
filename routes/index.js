@@ -26,7 +26,11 @@ const PersonSerializer = new JSONAPISerializer('person', {
 const User = require('../models/User');
 const Person = require('../models/Person');
 
-let currentUser;
+const getAccessToken = (req) => {
+    const header = req.get('Authorization');
+    const tokenarr = header.split(' ');
+    return tokenarr[1];
+};
 
 // token route for auth
 router.post('/token', asyncHandler(async (req, res, next) => {
@@ -36,15 +40,14 @@ router.post('/token', asyncHandler(async (req, res, next) => {
             await User.find({ email: username }, async (err, docs) => {
                 if (docs.length !== 0) {
                     const findPerson = await Person.find({ email: username });
-
                     if (findPerson.length !== 0) {
-                        currentUser = username;
                         bcrypt.compare(password, docs[0].password, (error, val) => {
                             if (error) {
                                 next(error);
                             }
                             if (val) {
-                                res.status(200).send('{ "access_token": "secret token"}');
+                            /* eslint-disable no-underscore-dangle */
+                                res.status(200).send(`{ "access_token": "${findPerson[0]._id}"}`);
                                 next();
                             } else {
                                 res.status(400).send('{"error": "invalid_grant"}');
@@ -125,7 +128,8 @@ router.post('/users', asyncHandler((req, res, next) => {
 
 router.get('/people', asyncHandler(async (req, res, next) => {
     try {
-        const docs = await Person.find({ email: currentUser });
+        const id = getAccessToken(req);
+        const docs = await Person.find({ _id: id });
 
         if (docs.length > 0) {
             const personDocs = docs[0];
